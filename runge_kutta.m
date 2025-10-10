@@ -12,6 +12,7 @@ function w = runge_kutta(f, a, b, alpha, n)
     t = a;
     w = alpha;
     h = (b - a) / n;
+    % TODO: convert to `for` loop.
     while t < b
         k_1 = h * f(t, w);
         k_2 = h * f(t + h / 2, w + k_1 / 2);
