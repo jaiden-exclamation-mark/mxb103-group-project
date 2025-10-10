@@ -1,0 +1,13 @@
+function w = runge_kutta(f, a, b, alpha, n)
+    t = a;
+    w = alpha;
+    h = (b - a) / n;
+    while t < b
+        k_1 = h * f(t, w);
+        k_2 = h * f(t + h / 2, w + k_1 / 2);
+        k_3 = h * f(t + h / 2, w + k_2 / 2);
+        k_4 = h * f(t + h, w + k_3);
+        w = w + (k_1 + 2 * k_2 + 2 * k_3 + k_4) / 6;
+        t = t + h;
+    end
+end
