@@ -4,10 +4,10 @@ addpath('..');
 function updated = push(value, buffer)
 % PUSH  Pushes a value onto the end of a buffer and removes the first element.
 %
-% Arguments
+% Arguments:
 %   value - The value to push to the end of the buffer.
 %   buffer - An array meant to act like a fixed-length buffer.
-% Returns
+% Returns:
 %   updated - An array with all of the contents of `buffer` from the second element to the end, with `value` as the last element.
     updated = buffer;
     len = length(buffer);
@@ -15,7 +15,15 @@ function updated = push(value, buffer)
     updated(len) = value;
 end
 
+% The below function exists because it's simpler than MATLAB's `struct` syntax.
 function p = point(x, y)
+% POINT  Creates a struct for a Cartesian point.
+%
+% Arguments:
+%   x - The x component of the point.
+%   y - The y component of the point.
+% Returns:
+%   p - A struct with fields `x` and `y`.
     p.x = x;
     p.y = y;
 end
