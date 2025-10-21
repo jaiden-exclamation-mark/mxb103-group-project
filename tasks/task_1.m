@@ -46,4 +46,28 @@ ylabel('Position (m)');
 title('Bungee jump position vs time')
 
 
-% I've started this section, but haven't fully finished it yet.
+function dydv = rhs_bungee(w, g, C, K, L)
+    y = w(1);
+    v = w(2);
+
+    % dy/dt = v
+    dydt = v;
+
+    % dv/dt = g - C|v|V - max(0, K(y - L))\
+    dvdt = g - C * abs(v) * v - max(0, K * (y - L));
+
+    dydv = [dydt; dvdt];
+end
+
+% Automatically count the number od bounces
+
+% Detect minima in y(t) to count bounces
+[min_peaks, min_locs] = findpeaks(-y, t); % find negative peaks (lowest points)
+num_bounces = length(min_peaks);
+fprintf('Number of bounces in %.1f seconds: %d\n', final_T, num_bounces);
+
+if num_bounces >= 10
+    fprintf('The 10th bounc occurs at t = %.2f seconds.\n', min_locs(10));
+else
+    fprintf('Only %d bounces occurred within %.1f seconds .\n', num_bounces, final_T);
+end
