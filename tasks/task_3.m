@@ -18,7 +18,7 @@ title('Bungee Jumper Acceleration vs Time');
 time_of_max_accel = t_mid(idx);
 
 % Display results in Command Window
-fprintf('Maximum acceleration: %.2f m/s^2 at t = %.2f seconds .\n, max_accel, time_of_max_accel);
+fprintf('Maximum acceleration: %.2f m/s^2 at t = %.2f seconds .\n, max_accel, time_of_max_accel', max_accel, idx);
 fprintf('2g = %.2f m/s^2 for comparison .\n', 2 * 9.8);
 
 % Add a marker on the plot for the maximum acceleration point
