@@ -3,7 +3,7 @@ addpath('..');
 
 % Use numerical differentiation to find acceleration
 a = diff(v) ./ diff(t);
-t_mid = t(1:end-1);
+t_mid = t(1:end - 1);
 
 % Plot acceleration vs time
 figure;
