@@ -5,6 +5,8 @@ clear; close all;
 % Initialise
 init_parameters;
 number_of_points = 1000;
+tolerance = 0;
+max_binary_search_iterations = 1e6;
 
 [t, y, ~] = calculate_y_and_v(number_of_points, g, C, K, L);
 
@@ -19,5 +21,31 @@ for i = 1:length(y) - 3
     end
 end
 
-interpolating_t
-interpolating_y
+% Create interpolating polynomial p(t) using Newton forward difference method
+
+p = @(x) newton_forward_difference(x, interpolating_t, interpolating_y);
+
+% Rootfind to find p(t) = H - D using bisection method/binary search
+
+f = @(x) p(x) - camera_height;
+
+a = interpolating_t(1);
+b = interpolating_t(4);
+
+for iteration = 1:max_binary_search_iterations
+    midpoint = (a + b) / 2;
+    if abs(f(midpoint)) <= tolerance
+        break;
+    end
+
+    if sign(f(midpoint)) == sign(f(a))
+        a = midpoint;
+    else
+        b = midpoint;
+    end
+end
+
+midpoint
+p(midpoint)
+camera_height
+i
