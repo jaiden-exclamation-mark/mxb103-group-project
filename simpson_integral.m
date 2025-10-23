@@ -16,8 +16,6 @@ function resultant = simpson_integral(f, a, b, n)
     h = (b - a) / n;
     % Map `f` to every x in the range.
     f_of_x = arrayfun(f, a:h:b);
-    odds = f_of_x(2:2:n);
-    evens = f_of_x(3:2:n);
 
-    resultant = (h / 3) * (f_of_x(1) + 4 * sum(odds) + 2 * sum(evens) + f_of_x(n + 1));
+    resultant = simpson_integral_array(f_of_x, a, b);
 end
