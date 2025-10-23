@@ -3,7 +3,7 @@ addpath('..');
 clc; clear; close all;
 
 % Increases `n` for the approximation of the integral.
-points_in_simpson = 100;
+points_in_simpson = 100000;
 
 % Parameters
 H = 74;     % Height of jump point
@@ -37,7 +37,7 @@ v_0 = 0;
 f = @(t, w) rhs_bungee(w, g, C, K, L);
 [t, w] = runge_kutta(f, 0, 60, [y_0; v_0], points_in_simpson);
 y = w(1, :);
-v = w(2, :)
+v = w(2, :);
 
-total_distance = simpson_integral_array(v, 0, 60);
-fprintf('The jumper will travel approximately %d metres in 60 seconds', total_distance);
+total_distance = simpson_integral_array(abs(v), 0, 60);
+fprintf('The jumper will travel approximately %f metres in 60 seconds', total_distance);
