@@ -48,4 +48,7 @@ end
 midpoint
 p(midpoint)
 camera_height
-i
+
+fprintf('The bungee jumper first reaches a displacement of %dm is at %fs\n', camera_height, midpoint);
+fprintf('Tolerance = %d, f(%.2f) = %f, p(%.2f) = %f\n', tolerance, midpoint, f(midpoint), midpoint, p(midpoint));
+fprintf('Calculated using %d iterations of bisection method.\n', iteration);
