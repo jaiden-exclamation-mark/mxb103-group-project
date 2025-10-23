@@ -4,7 +4,7 @@ clc; clear; close all;
 
 % Initialise
 init_parameters;
-[t, y, v] = calculate_y_and_v(60 / 1e-3);
+[t, y, ~] = calculate_y_and_v(60 / 1e-3, g, C, K, L);
 
 % Plot for y(t)
 figure;

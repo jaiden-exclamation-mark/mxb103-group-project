@@ -1,8 +1,4 @@
-function [t, y, v] = calculate_y_and_v(n)
-    % I don't want this to be here, but either all the parameters need to be passed in, or this -jaiden
-    % TODO: gotta be a better way to do this
-    init_parameters;
-    
+function [t, y, v] = calculate_y_and_v(n, g, C, K, L)
     y_0 = 0;
     v_0 = 0;
 
