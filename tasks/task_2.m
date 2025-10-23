@@ -28,7 +28,9 @@ time_of_max_speed = t(speed == max_speed);
 % Mark maximum speed point on graph
 hold on
 plot(time_of_max_speed, v(speed == max_speed), 'r*')
+legend('Velocity', 'Maximum speed', 'Location', 'best')
 
 % Display results in command window
+
 fprintf('Maximum speed: %.2f m/s at time: %.2f seconds. \n', max_speed, time_of_max_speed);
 
