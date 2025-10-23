@@ -2,40 +2,9 @@
 addpath('..');
 clc; clear; close all;
 
-% Parameters as given in task sheet
-H = 74;     % height of jump point
-D = 31;     % deck height
-c = 0.9;    % drag coefficient
-m = 80;     % mass of jumper
-L = 25;     % length of bungee rope
-k = 90;     % spring constant of bungee rope
-g = 9.8;    % gravitational acceleration
-final_t = 60;
-
-C = c / m;  % drag per unit mass with units 1/m
-K = k / m;  % stiffness per unit mass with units 1/s^2
-
-function dydv = rhs_bungee(w, g, C, K, L)
-    y = w(1);
-    v = w(2);
-
-    % dy/dt = v
-    dydt = v;
-
-    % dv/dt = g - C|v|V - max(0, K(y - L))\
-    dvdt = g - C * abs(v) * v - max(0, K * (y - L));
-
-    dydv = [dydt; dvdt];
-end
-
-y_0 = 0;
-v_0 = 0;
-
-% Curry `rhs_bungee` so then g, C, K, L are essentially "baked in"to the function.
-f = @(t, w) rhs_bungee(w, g, C, K, L);
-[t, w] = runge_kutta(f, 0, 60, [y_0; v_0], 60 / 1e-3);
-y = w(1, :);
-v = w(2, :);
+% Initialise
+init_parameters;
+[t, y, v] = calculate_y_and_v(60 / 1e-3);
 
 % Plot for y(t)
 figure;
