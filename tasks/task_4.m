@@ -1,6 +1,6 @@
 % Include function files in parent directory.
 addpath('..');
-clc; clear; close all;
+clear; close all;
 
 % Initialise
 init_parameters

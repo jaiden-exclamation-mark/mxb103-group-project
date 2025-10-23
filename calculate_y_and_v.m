@@ -1,6 +1,6 @@
 function [t, y, v] = calculate_y_and_v(n)
-    % I don't want this to be here, but either all the parameters need to be passed in, or this
-    % gotta be a better way to do this -jaiden
+    % I don't want this to be here, but either all the parameters need to be passed in, or this -jaiden
+    % TODO: gotta be a better way to do this
     init_parameters;
     
     y_0 = 0;
