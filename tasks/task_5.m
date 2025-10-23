@@ -1,5 +1,6 @@
 % Include function files in parent directory.
 addpath('..');
+clc; clear; close all;
 
 function updated = push(value, buffer)
 % PUSH  Pushes a value onto the end of a buffer and removes the first element.
