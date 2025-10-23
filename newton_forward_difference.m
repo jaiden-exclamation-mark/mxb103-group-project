@@ -1,4 +1,4 @@
-function p = newton_forward_difference(abscissas, values)
+function p = newton_forward_difference(x, abscissas, values)
     % Ensure abcissas are equally spaced.
     deltas = diff(abscissas);
     if any(deltas ~= deltas(1))
@@ -6,13 +6,13 @@ function p = newton_forward_difference(abscissas, values)
     end
 
     h = deltas(1);
-    s = (x - abscissas(0)) / h;
+    s = (x - abscissas(1)) / h;
 
     n = length(values);
     p = 0;
     forward_difference_table = values;
     for k = 0:n - 1
-        s_choose_k = prod(s - 0:n - 1) / factorial(k);
+        s_choose_k = prod(s - (0:k - 1)) / factorial(k);
         delta_k_y = forward_difference_table(1);
         forward_difference_table = diff(forward_difference_table);
         p = p + s_choose_k * delta_k_y;
