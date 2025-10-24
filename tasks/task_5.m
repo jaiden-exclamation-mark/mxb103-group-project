@@ -45,6 +45,6 @@ for iteration = 1:max_binary_search_iterations
     end
 end
 
-fprintf('The bungee jumper first reaches a displacement of %dm is at %fs\n', camera_height, midpoint);
+fprintf('The bungee jumper first reaches a displacement of %dm at %fs\n', camera_height, midpoint);
 fprintf('Tolerance = %d, f(%.2f) = %f, p(%.2f) = %f\n', tolerance, midpoint, f(midpoint), midpoint, p(midpoint));
 fprintf('Calculated using %d iterations of bisection method.\n', iteration);
