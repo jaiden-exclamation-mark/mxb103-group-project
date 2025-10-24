@@ -1,4 +1,12 @@
 function p = newton_forward_difference(x, abscissas, values)
+% NEWTON_FORWARD_DIFFERENCE  Computes the Newton forward difference form of the interpolating polynomial P_{n}(x) for a given value `x` and a array of points.
+%
+% Arguments:
+%   x - The `x` value to calculate the polynomial at.
+%   abscissas - The `x` components of the points. (these must be equally spaced)
+%   values - The `y` components of the points.
+% Returns:
+%   p - The value yielded by P_{n}(x)
     % Ensure abcissas are equally spaced.
     deltas = diff(abscissas);
     if any(deltas ~= deltas(1))
