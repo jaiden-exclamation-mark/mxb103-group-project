@@ -6,20 +6,26 @@ clear; close all;
 init_parameters;
 jumper_height = 1.75;
 
-% Alter length of bungee rope `L` (doing +/- 10m)
-for L = 15:35
-    % Alter spring constant `k` of rope. (doing +/- 10 N/m)
-    for k = 80:100
+% Alter length of bungee rope `L`
+for L = 20:45
+    % Alter spring constant `k` of rope.
+    for k = 70:90
         fprintf('Testing model with L = %d and k = %d\n', L, k);
         [t, y, v] = calculate_y_and_v(60 / 1e-3, g, C, k / m, L);
         % Use first-order difference approximation for acceleration.
         a = diff(v) ./ diff(t);
+        maximum_acceleration = max(abs(a));
 
-        if max(abs(a)) > 2 * g
+        % Discard unsafe models.
+        if maximum_acceleration > 2 * g
             fprintf('Model with parameters L = %d and k = %d rejected due to unsafe acceleration.\n', L, k);
             continue;
         end
 
-        
+        % The minima are defined as the points where a positive velocity is followed by a non-positive velocity.
+        minima = find(v(1:end - 1) > 0 & v(2:end) <= 0);
+        number_of_bounces = length(minima);
+        lowest_height = max(y);
+        distance_from_water = H - lowest_height - jumper_height;
     end
 end
