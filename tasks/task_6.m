@@ -5,11 +5,13 @@ clear; close all;
 % Initialise
 init_parameters;
 jumper_height = 1.75;
+rope_length_range = 20:45;
+spring_constant_range = 70:90;
 
 % Alter length of bungee rope `L`
-for L = 20:45
+for L = rope_length_range
     % Alter spring constant `k` of rope.
-    for k = 70:90
+    for k = spring_constant_range
         fprintf('Testing model with L = %d and k = %d\n', L, k);
         [t, y, v] = calculate_y_and_v(60 / 1e-3, g, C, k / m, L);
         % Use first-order difference approximation for acceleration.
