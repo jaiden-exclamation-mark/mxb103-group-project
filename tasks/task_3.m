@@ -23,5 +23,5 @@ fprintf('2g = %.2f m/s^2 for comparison .\n', 2 * 9.8);
 
 % Add a marker on the plot for the maximum acceleration point
 hold on;
-plot(time_of_max_accel, a(idx), 'ro', MarkerSize', 8, 'DisplayName', 'Max Acceleration');
+plot(time_of_max_accel, a(idx), 'ro', 'MarkerSize', 8, 'DisplayName', 'Max Acceleration');
 legend('Acceleration', 'Max Acceleration', 'Location', 'best');
