@@ -7,6 +7,9 @@ init_parameters;
 jumper_height = 1.75;
 rope_length_range = 20:45;
 spring_constant_range = 70:90;
+output_file = "task_6_table.txt";
+
+file_id = fopen(output_file, 'w');
 
 % Alter length of bungee rope `L`
 for L = rope_length_range
@@ -29,5 +32,7 @@ for L = rope_length_range
         number_of_bounces = length(minima);
         lowest_height = max(y);
         distance_from_water = H - lowest_height - jumper_height;
+
+        fprintf(file_id, '%d & %d & %d & %.2f & %.2f & %.2f \\\\\\hline\n', L, k, number_of_bounces, maximum_acceleration / g, lowest_height, distance_from_water);
     end
 end
