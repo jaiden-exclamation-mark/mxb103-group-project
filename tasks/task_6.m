@@ -10,6 +10,8 @@ spring_constant_range = 70:90;
 output_file = "task_6_table.txt";
 
 file_id = fopen(output_file, 'w');
+fprintf(file_id, '\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\n');
+fprintf(file_id, '$L$ & $k$ & Maximum acceleration ($g$s) & Distance to water (m) \\\\\\hline\n');
 
 % Alter length of bungee rope `L`
 for L = rope_length_range
@@ -30,9 +32,17 @@ for L = rope_length_range
         % The minima are defined as the points where a positive velocity is followed by a non-positive velocity.
         minima = find(v(1:end - 1) > 0 & v(2:end) <= 0);
         number_of_bounces = length(minima);
+
+        % Discard models that do not have 10 bounces.
+        if number_of_bounces ~= 10
+            fprintf('Model with parameters L = %d and k = %d rejected due to lack of bounces.\n', L, k);
+        end
+
         lowest_height = max(y);
         distance_from_water = H - lowest_height - jumper_height;
 
-        fprintf(file_id, '%d & %d & %d & %.2f & %.2f & %.2f \\\\\\hline\n', L, k, number_of_bounces, maximum_acceleration / g, lowest_height, distance_from_water);
+        fprintf(file_id, '%d & %d & %.2f & %.2f \\\\\\hline\n', L, k, maximum_acceleration / g, distance_from_water);
     end
 end
+
+fprintf(file_id, '\\end{tabular}');
