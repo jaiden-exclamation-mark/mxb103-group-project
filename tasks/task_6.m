@@ -8,7 +8,8 @@ jumper_height = 1.75;
 rope_length_range = 25:2:45;
 spring_constant_range = 70:90;
 tolerance = 1;
-minimum_bounce_criteria = 9;
+expected_bounce_number = 10;
+bounce_tolerance = 1;
 output_file = "task_6_table.txt";
 
 % Create output file
@@ -36,8 +37,8 @@ for L = rope_length_range
         minima = find(v(1:end - 1) > 0 & v(2:end) <= 0);
         number_of_bounces = length(minima);
 
-        % Discard models that do not meet minimum bounce criteria.
-        if number_of_bounces < minimum_bounce_criteria
+        % Discard models that do not meet bounce criteria.
+        if abs(number_of_bounces - expected_bounce_number) > bounce_tolerance
             fprintf('Model with parameters L = %d and k = %d rejected due to lack of bounces.\n', L, k);
             continue;
         end
