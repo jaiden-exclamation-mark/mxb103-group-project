@@ -37,6 +37,7 @@ for L = rope_length_range
         % Discard models that do not have 10 bounces.
         if number_of_bounces ~= 10
             fprintf('Model with parameters L = %d and k = %d rejected due to lack of bounces.\n', L, k);
+            continue;
         end
 
         lowest_height = max(y);
