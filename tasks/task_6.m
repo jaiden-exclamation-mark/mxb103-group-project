@@ -7,13 +7,13 @@ init_parameters;
 jumper_height = 1.75;
 rope_length_range = 25:2:45;
 spring_constant_range = 70:90;
-tolerance = 2;
+tolerance = 1;
 minimum_bounce_criteria = 9;
 output_file = "task_6_table.txt";
 
 file_id = fopen(output_file, 'w');
 fprintf(file_id, '\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\n');
-fprintf(file_id, '$L$ & $k$ & No. bounces & Peak accel. ($g$s) & Distance to water (m) \\\\\\hline\n');
+fprintf(file_id, '    $L$ & $k$ & No. bounces & Peak accel. ($g$s) & Distance to water (m) \\\\\\hline\n');
 
 % Alter length of bungee rope `L`
 for L = rope_length_range
