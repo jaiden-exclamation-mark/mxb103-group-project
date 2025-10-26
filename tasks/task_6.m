@@ -7,6 +7,7 @@ init_parameters;
 jumper_height = 1.75;
 rope_length_range = 25:2:45;
 spring_constant_range = 70:90;
+tolerance = 0.5;
 output_file = "task_6_table.txt";
 
 file_id = fopen(output_file, 'w');
@@ -41,7 +42,11 @@ for L = rope_length_range
         lowest_height = max(y);
         distance_from_water = H - lowest_height - jumper_height;
 
-        fprintf(file_id, '    %d & %d & %.2f & %.2f \\\\\\hline\n', L, k, maximum_acceleration / g, distance_from_water);
+        if abs(distance_from_water) <= tolerance
+            fprintf(file_id, '    %d & %d & %.2f & %.2f \\\\\\hline\n', L, k, maximum_acceleration / g, distance_from_water);
+        else
+            fprintf('Model with parameters L = %d and k = %d not close enough to water.\n', L, k);
+        end
     end
 end
 
