@@ -7,12 +7,12 @@ init_parameters;
 jumper_height = 1.75;
 rope_length_range = 25:2:45;
 spring_constant_range = 70:90;
-tolerance = 0.5;
+tolerance = 1;
 output_file = "task_6_table.txt";
 
 file_id = fopen(output_file, 'w');
 fprintf(file_id, '\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\n');
-fprintf(file_id, '$L$ & $k$ & Peak accel. ($g$s) & Distance to water (m) \\\\\\hline\n');
+fprintf(file_id, '$L$ & $k$ & No. bounces & Peak accel. ($g$s) & Distance to water (m) \\\\\\hline\n');
 
 % Alter length of bungee rope `L`
 for L = rope_length_range
@@ -35,16 +35,16 @@ for L = rope_length_range
         number_of_bounces = length(minima);
 
         % Discard models that do not have 10 bounces.
-        if number_of_bounces ~= 10
-            fprintf('Model with parameters L = %d and k = %d rejected due to lack of bounces.\n', L, k);
-            continue;
-        end
+        % if number_of_bounces ~= 10
+        %    fprintf('Model with parameters L = %d and k = %d rejected due to lack of bounces.\n', L, k);
+        %    continue;
+        % end
 
         lowest_height = max(y);
         distance_from_water = H - lowest_height - jumper_height;
 
         if abs(distance_from_water) <= tolerance
-            fprintf(file_id, '    %d & %d & %.2f & %.2f \\\\\\hline\n', L, k, maximum_acceleration / g, distance_from_water);
+            fprintf(file_id, '    %d & %d & %d & %.2f & %.2f \\\\\\hline\n', L, k, number_of_bounces, maximum_acceleration / g, distance_from_water);
         else
             fprintf('Model with parameters L = %d and k = %d not close enough to water.\n', L, k);
         end
