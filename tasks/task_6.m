@@ -11,6 +11,7 @@ tolerance = 1;
 minimum_bounce_criteria = 9;
 output_file = "task_6_table.txt";
 
+% Create output file
 file_id = fopen(output_file, 'w');
 fprintf(file_id, '\\begin{tabular}{|c|c|c|c|c|c|}\n    \\hline\n');
 fprintf(file_id, '    $L$ & $k$ & No. bounces & Peak accel. ($g$s) & Distance to water (m) \\\\\\hline\n');
@@ -35,7 +36,7 @@ for L = rope_length_range
         minima = find(v(1:end - 1) > 0 & v(2:end) <= 0);
         number_of_bounces = length(minima);
 
-        % Discard models that do not have 10 bounces.
+        % Discard models that do not meet minimum bounce criteria.
         if number_of_bounces < minimum_bounce_criteria
             fprintf('Model with parameters L = %d and k = %d rejected due to lack of bounces.\n', L, k);
             continue;
