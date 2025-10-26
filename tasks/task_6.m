@@ -12,7 +12,7 @@ minimum_bounce_criteria = 9;
 output_file = "task_6_table.txt";
 
 file_id = fopen(output_file, 'w');
-fprintf(file_id, '\\begin{tabular}{|c|c|c|c|c|c|}\n\\hline\n');
+fprintf(file_id, '\\begin{tabular}{|c|c|c|c|c|c|}\n    \\hline\n');
 fprintf(file_id, '    $L$ & $k$ & No. bounces & Peak accel. ($g$s) & Distance to water (m) \\\\\\hline\n');
 
 % Alter length of bungee rope `L`
